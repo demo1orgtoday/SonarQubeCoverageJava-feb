@@ -1,0 +1,22 @@
+name: Continuous Integration for java Code 
+on: 
+ push: # auto trigger for every commit on below branches
+  branches: 
+   - master 
+jobs: 
+  integrationJob: 
+    runs-on: ubuntu-latest 
+    steps:
+     - name: Install and setup Java and maven
+       uses: actions/setup-java@v5
+       with:
+          distribution: 'temurin' # Use Temurin JDK distribution
+          java-version: '17' # Set the Java version to 17 and installs maven
+     - name: Check out repository
+       uses: actions/checkout@v6 # clone current repo on the runner
+     - name: Compile the code 
+       run: mvn compile # compile the code using maven
+     - name: Run tests
+       run: mvn test # run the tests using maven  
+     - name: Build the code
+       run: mvn package # build the code using maven and create a jar file
