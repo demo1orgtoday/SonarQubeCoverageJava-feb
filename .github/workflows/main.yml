@@ -1,0 +1,19 @@
+name: Test and build Java code
+on: push 
+jobs:
+    buildJob:
+      runs-on: ubunut-latest
+      steps:
+       - name: Checkout the code
+         uses: actions/checkout@v7   
+       - name: Install java and maven 
+         uses: actions/setup-java@v6
+         with:
+          distribution: temurin
+          java-version: '17'
+       - name: compile the code 
+         run: mvn compile 
+       - name: test the code 
+         run: mvn test  
+       - name: build code 
+         run: mvn package 
