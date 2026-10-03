@@ -2,7 +2,7 @@ name: Test and build Java code
 on: push 
 jobs:
     buildJob:
-      runs-on: ubunut-latest
+      runs-on: ubuntu-latest
       steps:
        - name: Checkout the code
          uses: actions/checkout@v7   
